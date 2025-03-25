@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek与AIGC应用 | 北京大学研讨</title>
+    <meta name="description" content="北京大学关于DeepSeek与AIGC应用的内部研讨内容可视化展示">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        serif: ['"Noto Serif SC"', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            @apply bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-200;
+        }
+        .prose {
+            @apply max-w-none;
+        }
+        .prose h1, .prose h2, .prose h3, .prose h4 {
+            @apply font-serif font-bold text-gray-900 dark:text-white;
+        }
+        .prose a {
+            @apply text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 transition-colors;
+        }
+        .card {
+            @apply bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border border-gray-200 dark:border-gray-700;
+        }
+        .timeline-item {
+            @apply relative pl-8 pb-8 border-l-2 border-primary-500 dark:border-primary-400;
+        }
+        .timeline-item:last-child {
+            @apply pb-0;
+        }
+        .timeline-dot {
+            @apply absolute w-4 h-4 rounded-full bg-primary-500 dark:bg-primary-400 left-[-9px] top-0;
+        }
+        .table-container {
+            @apply overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm;
+        }
+        table {
+            @apply min-w-full divide-y divide-gray-200 dark:divide-gray-700;
+        }
+        th {
+            @apply px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-gray-800;
+        }
+        td {
+            @apply px-6 py-4 whitespace-normal text-sm text-gray-800 dark:text-gray-200;
+        }
+        tr:nth-child(even) {
+            @apply bg-gray-50 dark:bg-gray-800;
+        }
+        tr:nth-child(odd) {
+            @apply bg-white dark:bg-gray-900;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-primary-500 text-white shadow-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-primary-700 to-primary-500 text-white py-16 md:py-24">
+        <div class="container mx-auto px-6 text-center animate-fade-in">
+            <div class="flex justify-center mb-6">
+                <img src="https://www.pku.edu.cn/images/pku_logo.png" alt="北京大学校徽" class="h-20">
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 font-serif">DeepSeek与AIGC应用</h1>
+            <p class="text-xl md:text-2xl opacity-90 mb-8">北京大学内部研讨系列</p>
+            <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <p class="text-lg md:text-xl mb-4">本次讲座介绍DeepSeek的基本概念，大模型技术和AIGC工具应用，帮助理解DeepSeek和AIGC的深层次价值。</p>
+                <p class="text-sm md:text-base opacity-80">AI肖睿团队（孙萍、周峰、李娜、张惠军、刘誉） | 2025年2月20日</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 shadow-sm">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="text-xl font-bold text-primary-600 dark:text-primary-400">DeepSeek & AIGC</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#deepseek" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">DeepSeek</a>
+                    <a href="#aigc-concept" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">AIGC概念</a>
+                    <a href="#aigc-tech" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">技术揭秘</a>
+                    <a href="#aigc-tools" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">工具选择</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#deepseek" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">DeepSeek</a>
+                <a href="#aigc-concept" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">AIGC概念</a>
+                <a href="#aigc-tech" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">技术揭秘</a>
+                <a href="#aigc-tools" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">工具选择</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <!-- Abstract Section -->
+        <section class="mb-20 animate-fade-in">
+            <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto">
+                <h2 class="text-center mb-8">摘要</h2>
+                <div class="space-y-6">
+                    <div class="card p-6">
+                        <p>本次讲座为DeepSeek原理和应用系列研讨的讲座之一，主要介绍DeepSeek的基本概念，以及大模型技术和AIGC工具应用，不需要大家具备专业的AI或IT技术背景。</p>
+                    </div>
+                    <div class="card p-6">
+                        <p>本次讲座首先分析当前备受瞩目的DeepSeek-R1的概念、优势和历史地位。然后进一步探讨大模型和AIGC的底层工作机制，旨在帮助读者突破工具应用的局限，理解DeepSeek和AIGC的深层次价值。最后，介绍如何科学选择与高效使用AI工具，为大家提供更具深度与实用性的应用场景的指导。</p>
+                    </div>
+                    <div class="card p-6">
+                        <p>尽管DeepSeek-R1以其低成本和开源策略为行业带来变革，但当前网络上的大量相关内容仅停留在工具应用层面，易对初级AI应用人员造成概念和思维方式的误导，这也是本次讲座希望解决的问题。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DeepSeek Section -->
+        <section id="deepseek" class="mb-20 animate-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-12 font-serif">PART 01: 详解DeepSeek-R1</h2>
+            
+            <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto mb-12">
+                <p>DeepSeek-R1模型以其低成本、开源策略和卓越的推理能力脱颖而出，尤其在复杂逻辑推理、数学和编程任务中表现优异。本部分介绍DeepSeek-R1的技术特性、发展历程、应用场景及其在AIGC领域的定位。</p>
+            </div>
+            
+            <!-- AI Development Timeline -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">人工智能发展历程</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-brain text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">感知理解世界</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">分析数据，给出建议</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-primary-500 dark:text-primary-400 mt-1 mr-3">
+                                    <i class="fas fa-circle text-xs"></i>
+                                </div>
+                                <p>专家系统</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-primary-500 dark:text-primary-400 mt-1 mr-3">
+                                    <i class="fas fa-circle text-xs"></i>
+                                </div>
+                                <p>安防-视觉</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-primary-500 dark:text-primary-400 mt-1 mr-3">
+                                    <i class="fas fa-circle text-xs"></i>
+                                </div>
+                                <p>互联网-推荐</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-100 dark:bg-secondary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-magic text-secondary-600 dark:text-secondary-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">生成创造世界</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">合成数据，创造结果</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-secondary-500 dark:text-secondary-400 mt-1 mr-3">
+                                    <i class="fas fa-circle text-xs"></i>
+                                </div>
+                                <p>ChatGPT</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-secondary-500 dark:text-secondary-400 mt-1 mr-3">
+                                    <i class="fas fa-circle text-xs"></i>
+                                </div>
+                                <p>GPT-4</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-secondary-500 dark:text-secondary-400 mt-1 mr-3">
+                                    <i class="fas fa-circle text-xs"></i>
+                                </div>
+                                <p>AI产业发展"三叠浪"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AIGC Development Timeline -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">AIGC的发展历程</h3>
+                <div class="relative">
+                    <!-- Timeline -->
+                    <div class="border-l-2 border-primary-500 dark:border-primary-400 absolute h-full left-4 md:left-1/2"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="space-y-8">
+                        <!-- Item 1 -->
+                        <div class="relative pl-8 md:pl-0 md:flex justify-between items-center">
+                            <div class="md:w-5/12 md:pr-8 md:text-right">
+                                <h4 class="font-bold">1950s-1990S</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">早期萌芽阶段</p>
+                            </div>
+                            <div class="absolute w-4 h-4 rounded-full bg-primary-500 dark:bg-primary-400 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2"></div>
+                            <div class="md:w-5/12 mt-4 md:mt-0">
+                                <p class="text-sm">受限于技术水平，AIGC仅限于小范围实验</p>
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                                    <p>1950年 - 图灵测试</p>
+                                    <p>1966年 - Eliza</p>
+                                    <p>1984-1986年 - Tangora</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative pl-8 md:pl-0 md:flex justify-between items-center">
+                            <div class="md:w-5/12 md:pr-8 md:text-right">
+                                <h4 class="font-bold">1990s-2010S</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">沉淀积累阶段</p>
+                            </div>
+                            <div class="absolute w-4 h-4 rounded-full bg-primary-500 dark:bg-primary-400 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2"></div>
+                            <div class="md:w-5/12 mt-4 md:mt-0">
+                                <p class="text-sm">AIGC从实验性向实用性转变，受限于算法瓶颈，无法直接生成内容</p>
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                                    <p>2007年 - 《1 The Road》AI小说</p>
+                                    <p>2012年 - 微软全自动同声传译</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative pl-8 md:pl-0 md:flex justify-between items-center">
+                            <div class="md:w-5/12 md:pr-8 md:text-right">
+                                <h4 class="font-bold">2010s-2022年</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">快速发展阶段</p>
+                            </div>
+                            <div class="absolute w-4 h-4 rounded-full bg-primary-500 dark:bg-primary-400 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2"></div>
+                            <div class="md:w-5/12 mt-4 md:mt-0">
+                                <p class="text-sm">深度学习算法不断迭代，人工智能生成内容百花齐放</p>
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                                    <p>2014年 - GAN</p>
+                                    <p>2018年 - StyleGAN</p>
+                                    <p>2019年 - DVD-GAN</p>
+                                    <p>2022年 - ChatGPT</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Big Model Terms -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">大模型相关术语</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-layer-group text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h4 class="font-bold">多模态</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2 text-xs"></i>
+                                <span>文本、图片、音频、视频</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-secondary-100 dark:bg-secondary-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-tools text-secondary-600 dark:text-secondary-400"></i>
+                            </div>
+                            <h4 class="font-bold">AI工具（国内）</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>DeepSeek、豆包、Kimi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>腾讯元宝、智谱清言</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>通义千问、秘密搜索</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-globe text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <h4 class="font-bold">通用模型</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2 text-xs"></i>
+                                <span>大语言模型 (LLM)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2 text-xs"></i>
+                                <span>视频模型</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2 text-xs"></i>
+                                <span>多模态模型</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-industry text-purple-600 dark:text-purple-400"></i>
+                            </div>
+                            <h4 class="font-bold">行业模型</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 dark:text-purple-400 mt-1 mr-2 text-xs"></i>
+                                <span>教育、医疗、金融等</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 dark:text-purple-400 mt-1 mr-2 text-xs"></i>
+                                <span>垂直模型、垂类模型</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Big Model Development -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">大模型的关键发展</h3>
+                <div class="card p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="border-r border-gray-200 dark:border-gray-700 pr-6">
+                            <h4 class="font-bold text-primary-600 dark:text-primary-400 mb-3">准备期</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>ChatGPT发布，全球迅速形成大规模建模</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>GPT-4发布，掀起大规模开发热潮</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>国内快速推进大规模研发</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="border-r border-gray-200 dark:border-gray-700 pr-6">
+                            <h4 class="font-bold text-secondary-600 dark:text-secondary-400 mb-3">跃进期</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-secondary-500 dark:text-secondary-400 mt-1 mr-2"></i>
+                                    <span>Llama2开源，助力全球开发者生态</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-secondary-500 dark:text-secondary-400 mt-1 mr-2"></i>
+                                    <span>GPT-4 Turbo、Gemini发布</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-secondary-500 dark:text-secondary-400 mt-1 mr-2"></i>
+                                    <span>国内开源生态爆发</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="border-r border-gray-200 dark:border-gray-700 pr-6">
+                            <h4 class="font-bold text-green-600 dark:text-green-400 mb-3">繁荣期</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                    <span>OpenAI发布Sera，拓展视频领域</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                    <span>GPT-4o、Clauda3.5、Gemini1.5发布</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                    <span>国内通用模型持续提升</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-purple-600 dark:text-purple-400 mb-3">深化期</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-purple-500 dark:text-purple-400 mt-1 mr-2"></i>
+                                    <span>OpenAI发布61，强化学习新范式</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-purple-500 dark:text-purple-400 mt-1 mr-2"></i>
+                                    <span>ChatGPT上线实时视频能力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-purple-500 dark:text-purple-400 mt-1 mr-2"></i>
+                                    <span>国内推理模型迅速涌现</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Model Comparison -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">生成模型与推理大模型的对比</h3>
+                <div class="table-container">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr>
+                                <th class="w-1/5">比较项</th>
+                                <th class="w-2/5">GPT-4o（生成模型）</th>
+                                <th class="w-2/5">DeepSeek-R1（推理模型）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>模型定位</td>
+                                <td>专注于通用自然语言处理和多模态能力，适合日常对话、内容生成、翻译以及图文、音频、视频等信息处理、生成、对话等。</td>
+                                <td>侧重于复杂推理与逻辑能力，擅长数学、编程和自然语言推理任务，适合高难度问题求解和专业领域应用，在中文表达上容易出彩。</td>
+                            </tr>
+                            <tr>
+                                <td>推理能力</td>
+                                <td>在日常语言任务中表现均衡，但在复杂逻辑推理（如数学或解）上准确率较低。</td>
+                                <td>在复杂推理任务表现卓越，尤其擅长数学、代码推理任务，在部分基准测试（如GPQA）中准确率高于GPT-4o。</td>
+                            </tr>
+                            <tr>
+                                <td>多模态支持</td>
+                                <td>支持文本、图像、音频乃至视频输入，可处理多种模态信息。</td>
+                                <td>当前主要支持文本输入，不具备图像处理等多模态能力。</td>
+                            </tr>
+                            <tr>
+                                <td>应用场景</td>
+                                <td>适合广泛通用任务，如对话、内容生成、多模态信息处理以及多种语言相互翻译和交流；面向大众市场和商业应用。</td>
+                                <td>适合需要高精度推理和逻辑分析的专业任务，如数学竞赛、编程问题和科学研究；在思路清晰度要求高的场景具有明显优势。</td>
+                            </tr>
+                            <tr>
+                                <td>用户交互体验</td>
+                                <td>提供流畅的实时对话体验，支持多种输入模态；用户界面友好，适合大众使用。</td>
+                                <td>可展示大部分模式思考过程，便于专业用户理解推理过程；界面和使用体验具有较高的定制性，但整体交互节奏较慢。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- DeepSeek-R1 Info -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">火爆全网的DeepSeek-R1</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-bolt text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">技术突破</h4>
+                        </div>
+                        <p>R1模型在技术上实现了覆盖效率——用低噪声学习方法让AI自发涌现出显著能力。在数字、化肥、自然语言推理等任务上，性能比前OpenAI的or模型正式高。且训练成本仅为360万美元，远低于美国科技巨头的数亿美元乃至数十亿美元投入。</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-100 dark:bg-secondary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-line text-secondary-600 dark:text-secondary-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">行业影响</h4>
+                        </div>
+                        <p>DeepSeek-R1的API定价仅为行业均价的1/10，推动了中小型企业低成本接入AI，对行业产生了积极影响。它打破了硅谷传统的"堆算力、拼资本"的大模型发展路径。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DeepSeek Company -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">DeepSeek公司</h3>
+                <div class="card p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold mb-3">公司背景</h4>
+                            <p>DeepSeek，全称杭州深度求索人工智能基础技术研究有限公司，成立于2023年7月17日，是一家创新型科技企业，专注于人工智能基础技术的研究与开发。</p>
+                            <p class="mt-3">作为由知名私募巨头幻方量化孕育而生的公司，DeepSeek获得了强大的资金支持和行业影响力。</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-3">里程碑</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>2023年7月 - DeepSeek成立</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>2024年1月 - 发布首个大模型DeepSeek LLM</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>2025年1月 - 正式发布DeepSeek R1模型</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DeepSeek Models -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">DeepSeek模型系列</h3>
+                <div class="card p-6">
+                    <div class="relative">
+                        <!-- Timeline -->
+                        <div class="hidden md:block absolute h-2 bg-primary-500 dark:bg-primary-400 top-1/2 left-0 right-0 transform -translate-y-1/2"></div>
+                        
+                        <!-- Timeline Items -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 relative z-10">
+                            <!-- Item 1 -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-center">
+                                <div class="w-12 h-12 bg-primary-500 dark:bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-rocket text-white"></i>
+                                </div>
+                                <p class="text-sm font-bold">2023.07</p>
+                                <p class="text-xs">DeepSeek成立</p>
+                            </div>
+                            
+                            <!-- Item 2 -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-center">
+                                <div class="w-12 h-12 bg-primary-500 dark:bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-cube text-white"></i>
+                                </div>
+                                <p class="text-sm font-bold">2024.01</p>
+                                <p class="text-xs">发布首个大模型</p>
+                            </div>
+                            
+                            <!-- Item 3 -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-center">
+                                <div class="w-12 h-12 bg-primary-500 dark:bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-code-branch text-white"></i>
+                                </div>
+                                <p class="text-sm font-bold">2024.05</p>
+                                <p class="text-xs">开源第二代MoE大模型</p>
+                            </div>
+                            
+                            <!-- Item 4 -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-center">
+                                <div class="w-12 h-12 bg-primary-500 dark:bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-merge text-white"></i>
+                                </div>
+                                <p class="text-sm font-bold">2024.09</p>
+                                <p class="text-xs">合并升级V2.5模型</p>
+                            </div>
+                            
+                            <!-- Item 5 -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-center">
+                                <div class="w-12 h-12 bg-primary-500 dark:bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-eye text-white"></i>
+                                </div>
+                                <p class="text-sm font-bold">2024.11</p>
+                                <p class="text-xs">R1 Lite预览版上线</p>
+                            </div>
+                            
+                            <!-- Item 6 -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-center">
+                                <div class="w-12 h-12 bg-primary-500 dark:bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-trophy text-white"></i>
+                                </div>
+                                <p class="text-sm font-bold">2025.01</p>
+                                <p class="text-xs">R1模型发布，排名第三</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DeepSeek-R1 Applications -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 font-serif">DeepSeek-R1 应用场景</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-code text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h4 class="font-bold">推理密集型任务</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2 text-xs"></i>
+                                <span>编程任务中的代码生成、算法设计</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2 text-xs"></i>
+                                <span>数学问题求解、科学推理和逻辑分析</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-secondary-100 dark:bg-secondary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-secondary-600 dark:text-secondary-400"></i>
+                            </div>
+                            <h4 class="font-bold">教育与知识应用</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>解决教育领域的问题，支持知识理解与解答</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>科研任务的实验设计、数据分析和论文撰写</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-file-alt text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <h4 class="font-bold">文档分析与长上下文理解</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2 text-xs"></i>
+                                <span>处理需要深入文档分析和理解长上下文的任务</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2 text-xs"></i>
+                                <span>复杂信息提取与整合</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-pen-fancy text-purple-600 dark:text-purple-400"></i>
+                            </div>
+                            <h4 class="font-bold">开放领域问答与写作</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 dark:text-purple-400 mt-1 mr-2 text-xs"></i>
+                                <span>内容生成、问题回答以及创造性写作</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 dark:text-purple-400 mt-1 mr-2 text-xs"></i>
+                                <span>生成高质量文本或进行内容编辑</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AIGC Concept Section -->
+        <section id="aigc-concept" class="mb-20 animate-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-12 font-serif">PART 02: AIGC的概念和应用</h2>
+            
+            <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto mb-12">
+                <p>本部分着重介绍人工智能生成内容（AIGC）的定义、应用范围及其在各行业的实际影响。通过深入探讨AIGC的应用现状和未来趋势，帮助读者全面理解AIGC的潜力和影响。</p>
+            </div>
+            
+            <!-- AIGC Terms -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">眼花缭乱的名词</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">AI相关术语</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mr-3">AI</span>
+                                <span>人工智能</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mr-3">AGI</span>
+                                <span>通用人工智能</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mr-3">AIGC</span>
+                                <span>人工智能生成内容</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">AI分类</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 px-3 py-1 rounded-full text-sm font-medium mr-3">生成式AI</span>
+                                <span>创造新内容</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 px-3 py-1 rounded-full text-sm font-medium mr-3">决策式AI</span>
+                                <span>分析数据做决策</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 px-3 py-1 rounded-full text-sm font-medium mr-3">ChatGPT</span>
+                                <span>知名生成式AI产品</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AIGC Capabilities -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">AIGC能干什么</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-font text-primary-600 dark:text-primary-400 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">生成文本</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">文章、代码、剧本、诗歌等</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-image text-secondary-600 dark:text-secondary-400 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">生成图像</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">插画、照片、设计等</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-music text-green-600 dark:text-green-400 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">生成音频</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">音乐、语音、音效等</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-video text-purple-600 dark:text-purple-400 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">生成视频</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">动画、特效、短片等</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AIGC Examples -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">AIGC应用示例</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-4">AI文本</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-code text-primary-500 dark:text-primary-400 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">代码生成</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Cursor、GitHub Copilot、通义灵码</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-book text-primary-500 dark:text-primary-400 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">文学创作</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">微软"小冰"出版诗集、百万字小说《天命使徒》</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-newspaper text-primary-500 dark:text-primary-400 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">新闻写作</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">BBC的Juicer、新华社的快笔小新</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-4">AI绘画</h4>
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-palette text-secondary-500 dark:text-secondary-400 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">艺术创作</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">2022年8月，AI作品《太空歌剧院》获得比赛一等奖</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-expand text-secondary-500 dark:text-secondary-400 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">图像扩展</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">新西湖繁胜全景图 - 借助AI完成5000个建筑的绘制</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-4">AI音频</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-microphone text-green-500 dark:text-green-400 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">语音克隆</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">高保真语音合成与复制</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-music text-green-500 dark:text-green-400 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">音乐创作</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">AI加持下的音乐创作，人人皆可成为创作者</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-4">AI视频</h4>
+                            <div class="flex items-start">
+                                <i class="fas fa-film text-purple-500 dark:text-purple-400 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">视频生成</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Pika等工具能在视频中添加任意内容，真假难辨</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Industry Applications -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">AIGC的行业应用</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-shopping-cart text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h4 class="font-bold">电商行业</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2 text-xs"></i>
+                                <span>商品3D模型改善购物体验</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2 text-xs"></i>
+                                <span>AI模特降低产品拍摄成本</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2 text-xs"></i>
+                                <span>虚拟主播提升直播带货效率</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-secondary-100 dark:bg-secondary-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-ad text-secondary-600 dark:text-secondary-400"></i>
+                            </div>
+                            <h4 class="font-bold">内容广告</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>账号IP打造与内容策划</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>生成个性化广告内容</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-500 dark:text-secondary-400 mt-1 mr-2 text-xs"></i>
+                                <span>虚拟偶像提升品牌宣传效果</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-newspaper text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <h4 class="font-bold">新闻传媒</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2 text-xs"></i>
+                                <span>语音转写提高新闻时效性</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2 text-xs"></i>
+                                <span>AI合成主播实现智能播报</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-film text-purple-600 dark:text-purple-400"></i>
+                            </div>
+                            <h4 class="font-bold">影视行业</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 dark:text-purple-400 mt-1 mr-2 text-xs"></i>
+                                <span>智能图像修复与场景生成</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 dark:text-purple-400 mt-1 mr-2 text-xs"></i>
+                                <span>数字复活已故演员</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-gamepad text-yellow-600 dark:text-yellow-400"></i>
+                            </div>
+                            <h4 class="font-bold">游戏行业</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-500 dark:text-yellow-400 mt-1 mr-2 text-xs"></i>
+                                <span>NPC角色生成与剧情创作</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-500 dark:text-yellow-400 mt-1 mr-2 text-xs"></i>
+                                <span>游戏策略与性能测试</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h4 class="font-bold">教育行业</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 dark:text-red-400 mt-1 mr-2 text-xs"></i>
+                                <span>自动批改作业和考试</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 dark:text-red-400 mt-1 mr-2 text-xs"></i>
+                                <span>虚拟实验室与学习资料生成</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AIGC Future -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 font-serif">AIGC的未来</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">核心价值</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg">
+                                <h5 class="font-bold text-primary-600 dark:text-primary-400 mb-2">增强创新</h5>
+                                <p class="text-sm">拓展创意边界，激发新想法</p>
+                            </div>
+                            <div class="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg">
+                                <h5 class="font-bold text-primary-600 dark:text-primary-400 mb-2">降本增效</h5>
+                                <p class="text-sm">大幅降低内容生产成本</p>
+                            </div>
+                            <div class="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg">
+                                <h5 class="font-bold text-primary-600 dark:text-primary-400 mb-2">企业赋能</h5>
+                                <p class="text-sm">提升企业生产力和竞争力</p>
+                            </div>
+                            <div class="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg">
+                                <h5 class="font-bold text-primary-600 dark:text-primary-400 mb-2">个人赋能</h5>
+                                <p class="text-sm">提高个人工作效率和学习能力</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">挑战</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <h5 class="font-medium mb-2">生成质量</h5>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">结果幻象、可控性、理解能力、生成精准度</p>
+                            </div>
+                            <div>
+                                <h5 class="font-medium mb-2">数据隐私及安全</h5>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">泄露隐私、数字身份冒用、制作虚假信息诈骗</p>
+                            </div>
+                            <div>
+                                <h5 class="font-medium mb-2">伦理挑战</h5>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">社会偏见、性别歧视、"复活"逝者等</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card p-6 mt-8">
+                    <h4 class="font-bold mb-4">未来趋势</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chart-line text-primary-600 dark:text-primary-400 text-2xl"></i>
+                            </div>
+                            <h5 class="font-bold">技术进步</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">生成质量和准确性将得到提升</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-expand text-secondary-600 dark:text-secondary-400 text-2xl"></i>
+                            </div>
+                            <h5 class="font-bold">更广泛的应用</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">在保险、医疗和法律服务等领域应用</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-people-arrows text-green-600 dark:text-green-400 text-2xl"></i>
+                            </div>
+                            <h5 class="font-bold">人机协作</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">与人类专家协作提供更高质量内容</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-gavel text-purple-600 dark:text-purple-400 text-2xl"></i>
+                            </div>
+                            <h5 class="font-bold">监管框架</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">关于内容生成和使用的监管框架发展</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AIGC Technology Section -->
+        <section id="aigc-tech" class="mb-20 animate-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-12 font-serif">PART 03: AIGC的能力揭秘</h2>
+            
+            <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto mb-12">
+                <p>本部分深入剖析AIGC背后的技术原理，涵盖文本生成和图像生成两大核心领域。通过对比文本生成和图像生成的不同路径，全面理解AIGC在不同模式下的工作原理，以及如何利用这些技术实现高效的内容创作和应用。</p>
+            </div>
+            
+            <!-- Text Generation -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">文本生成的奥秘</h3>
+                
+                <div class="card p-6 mb-8">
+                    <h4 class="font-bold mb-4">GPT模型发展历程</h4>
+                    <div class="relative h-64 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+                        <!-- Simplified timeline visualization -->
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="h-1 w-full bg-primary-500 dark:bg-primary-400"></div>
+                        </div>
+                        <div class="absolute left-[10%] top-1/2 transform -translate-y-1/2">
+                            <div class="w-8 h-8 bg-primary-500 dark:bg-primary-400 rounded-full flex items-center justify-center text-white">
+                                <span class="text-xs font-bold">1</span>
+                            </div>
+                            <div class="absolute top-full mt-2 w-32 text-xs text-center">GPT-1 (2018)</div>
+                        </div>
+                        <div class="absolute left-[30%] top-1/2 transform -translate-y-1/2">
+                            <div class="w-8 h-8 bg-primary-500 dark:bg-primary-400 rounded-full flex items-center justify-center text-white">
+                                <span class="text-xs font-bold">2</span>
+                            </div>
+                            <div class="absolute top-full mt-2 w-32 text-xs text-center">GPT-2 (2019)</div>
+                        </div>
+                        <div class="absolute left-[50%] top-1/2 transform -translate-y-1/2">
+                            <div class="w-8 h-8 bg-primary-500 dark:bg-primary-400 rounded-full flex items-center justify-center text-white">
+                                <span class="text-xs font-bold">3</span>
+                            </div>
+                            <div class="absolute top-full mt-2 w-32 text-xs text-center">GPT-3 (2020)</div>
+                        </div>
+                        <div class="absolute left-[70%] top-1/2 transform -translate-y-1/2">
+                            <div class="w-8 h-8 bg-primary-500 dark:bg-primary-400 rounded-full flex items-center justify-center text-white">
+                                <span class="text-xs font-bold">4</span>
+                            </div>
+                            <div class="absolute top-full mt-2 w-32 text-xs text-center">GPT-4 (2023)</div>
+                        </div>
+                        <div class="absolute left-[90%] top-1/2 transform -translate-y-1/2">
+                            <div class="w-8 h-8 bg-primary-500 dark:bg-primary-400 rounded-full flex items-center justify-center text-white">
+                                <span class="text-xs font-bold">5</span>
+                            </div>
+                            <div class="absolute top-full mt-2 w-32 text-xs text-center">GPT-4o (2024)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">3大核心能力</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-primary-600 dark:text-primary-400 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">文本总结能力</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">从长文档中提取主要信息</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-primary-600 dark:text-primary-400 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">文本改写能力</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">改变文本风格保持语义</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-primary-600 dark:text-primary-400 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">文本生成能力</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">创造全新的文本内容</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">工作原理</h4>
+                        <ol class="space-y-3 list-decimal list-inside text-sm">
+                            <li>收到提示词</li>
+                            <li>将输入拆分为token</li>
+                            <li>采用Transformer架构处理token</li>
+                            <li>基于上下文预测下一个token</li>
+                            <li>根据概率分数选择标记</li>
+                            <li>重复过程直到形成完整句子</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="card p-6 mb-8">
+                    <h4 class="font-bold mb-4">数据来源与规模</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-medium mb-2">数据来源</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-database text-primary-500 dark:text-primary-400 mt

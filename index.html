@@ -1221,4 +1221,523 @@
                             <h5 class="font-medium mb-2">数据来源</h5>
                             <ul class="space-y-2 text-sm">
                                 <li class="flex items-start">
-                                    <i class="fas fa-database text-primary-500 dark:text-primary-400 mt
+                                    <i class="fas fa-database text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>维基百科、图书、杂志期刊</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-link text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>WebText、Reddit链接</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-code text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>GitHub代码库</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">规模指标</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-cube text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>700多GB训练数据</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-calculator text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>1.8万亿参数 (GPT-4)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-window-maximize text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>8192个token上下文窗口</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">优势</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                <span>强大的语言理解和生成能力</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                <span>广泛的世界知识覆盖</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                <span>具备一定的推理能力</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">劣势</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-circle text-red-500 dark:text-red-400 mt-1 mr-2"></i>
+                                <span>可能产生幻觉（错误答案）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-circle text-red-500 dark:text-red-400 mt-1 mr-2"></i>
+                                <span>知识库存在时间限制</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-circle text-red-500 dark:text-red-400 mt-1 mr-2"></i>
+                                <span>上下文窗口有限制</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Image Generation -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 font-serif">图像生成的奥秘</h3>
+                
+                <div class="card p-6 mb-8">
+                    <h4 class="font-bold mb-4">Stable Diffusion 模型工作流程</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-keyboard text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <h5 class="font-bold mb-2">文本编码器</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">解析用户提示词，转化为高维向量表示</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-cogs text-secondary-600 dark:text-secondary-400 text-xl"></i>
+                            </div>
+                            <h5 class="font-bold mb-2">图像信息生成器</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">将输入信息逐步处理和转换为图像数据</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-image text-green-600 dark:text-green-400 text-xl"></i>
+                            </div>
+                            <h5 class="font-bold mb-2">图像解码器</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">将信息矩阵转换为可视化的图像</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">文生图的优势</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                <span>降低艺术创作门槛</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                <span>大幅提高创作效率</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                                <span>支持多样化艺术风格</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">文生图的局限</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation text-red-500 dark:text-red-400 mt-1 mr-2"></i>
+                                <span>精确控制困难</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation text-red-500 dark:text-red-400 mt-1 mr-2"></i>
+                                <span>随机性太强</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation text-red-500 dark:text-red-400 mt-1 mr-2"></i>
+                                <span>复杂场景理解不足</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AIGC Tools Section -->
+        <section id="aigc-tools" class="animate-fade-in">
+            <h2 class="text-3xl font-bold text-center mb-12 font-serif">PART 04: 选择AIGC工具</h2>
+            
+            <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto mb-12">
+                <p>本部分聚焦于如何科学选择和高效应用AIGC工具，以满足不同场景下的多样化需求。通过深入分析和对比，为读者提供一份实用的AIGC工具选择指南。</p>
+            </div>
+            
+            <!-- Tools Overview -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">AIGC工具概览</h3>
+                <div class="table-container">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr>
+                                <th>工具类型</th>
+                                <th>国内</th>
+                                <th>国外</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>聊天对话机器人</td>
+                                <td>DeepSeek、腾讯元宝、豆包、Kimi、智谱清言</td>
+                                <td>ChatGPT，Claude，X.com（Grok）</td>
+                            </tr>
+                            <tr>
+                                <td>图像生成工具</td>
+                                <td>通义万相、即梦、豆包</td>
+                                <td>Midjourney，Stable Diffusion</td>
+                            </tr>
+                            <tr>
+                                <td>音频工具</td>
+                                <td>音频、网易天音、海绵音乐</td>
+                                <td>Suno</td>
+                            </tr>
+                            <tr>
+                                <td>视频生成工具</td>
+                                <td>SkyReels、Vidu、可灵、海螺AI、即梦</td>
+                                <td>Sora，Runway，Pika</td>
+                            </tr>
+                            <tr>
+                                <td>搜索工具</td>
+                                <td>秘塔、纳米AI、天工</td>
+                                <td>Perplexity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Popular Tools -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">热门AIGC工具</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-4">
+                                    <i class="fab fa-weixin text-blue-600 dark:text-blue-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">腾讯元宝</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">接入DeepSeek-R1，微信生态集成</p>
+                                </div>
+                            </div>
+                            <a href="https://yuanbao.tencent.com/" target="_blank" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">https://yuanbao.tencent.com/</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900 flex items-center justify-center mr-4">
+                                    <i class="fas fa-leaf text-green-600 dark:text-green-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">豆包</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">多模态、语音情感能力强</p>
+                                </div>
+                            </div>
+                            <a href="https://www.doubao.com" target="_blank" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">https://www.doubao.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-4">
+                                    <i class="fas fa-moon text-purple-600 dark:text-purple-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Kimi</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">超长上下文，支持20万字输入</p>
+                                </div>
+                            </div>
+                            <a href="https://kimi.moonshot.cn/" target="_blank" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">https://kimi.moonshot.cn/</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center mr-4">
+                                    <i class="fas fa-music text-yellow-600 dark:text-yellow-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">音频</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">AI音乐创作工具</p>
+                                </div>
+                            </div>
+                            <a href="https://www.yinfeng.cn/create" target="_blank" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">https://www.yinfeng.cn/create</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900 flex items-center justify-center mr-4">
+                                    <i class="fas fa-video text-red-600 dark:text-red-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Vidu</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">AI视频生成工具</p>
+                                </div>
+                            </div>
+                            <a href="https://www.vidu.cn/" target="_blank" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">https://www.vidu.cn/</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center mr-4">
+                                    <i class="fas fa-search text-indigo-600 dark:text-indigo-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">秘塔AI搜索</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">没有广告，直达结果</p>
+                                </div>
+                            </div>
+                            <a href="https://metaso.cn" target="_blank" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">https://metaso.cn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- How to Choose -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 font-serif">如何选择AIGC工具</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">选择依据</h4>
+                        <ol class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">1</span>
+                                <div>
+                                    <p class="font-medium">明确自身需求</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">确定需要解决的具体问题或任务类型</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">2</span>
+                                <div>
+                                    <p class="font-medium">评测工具能力</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">比较不同工具在特定任务上的表现</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">3</span>
+                                <div>
+                                    <p class="font-medium">关注使用成本</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">考虑价格、易用性和集成难度</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-bold mb-4">工具推荐</h4>
+                        <ul class="space-y-4">
+                            <li>
+                                <p class="font-medium">文本模态、推理能力强</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">推荐: DeepSeek-R1</p>
+                            </li>
+                            <li>
+                                <p class="font-medium">多模态、语音情感能力强</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">推荐: 豆包</p>
+                            </li>
+                            <li>
+                                <p class="font-medium">超长文本、搜索和推理能力强</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">推荐: Kimi-1.5</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Improve Skills -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 font-serif">如何提升AIGC使用能力</h3>
+                <div class="card p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold mb-4">持续更新AI工具列表</h4>
+                            <ol class="space-y-3 text-sm">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">1</span>
+                                    <span>明确使用AI工具的需求和目标</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">2</span>
+                                    <span>建立分类使用清单（文本类、绘图类等）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">3</span>
+                                    <span>以1~2个工具为主，其它为辅</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">4</span>
+                                    <span>真实使用中测试和筛选</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">5</span>
+                                    <span>保持2-3周的更新频次</span>
+                                </li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4">与AI共舞</h4>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>学习AIGC基础知识</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>积极使用AIGC工具</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>关注各行业应用案例</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-primary-500 dark:text-primary-400 mt-1 mr-2"></i>
+                                    <span>跟踪最新发展趋势</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Conclusion -->
+        <section class="my-20 text-center animate-fade-in">
+            <div class="prose prose-lg dark:prose-invert max-w-3xl mx-auto">
+                <h2 class="mb-6">总结</h2>
+                <p class="mb-6">AIGC技术正在重塑各个行业的未来，从内容创作到科学研究，从教育到商业应用，潜力无限。然而，技术的快速发展也带来了新的挑战。</p>
+                <p class="mb-8">面对这些挑战，我们需要保持开放的心态，积极学习AIGC的基础知识，关注其在各行业的应用案例，跟踪最新发展趋势。与AI共舞，实现AI与人类的完美融合。</p>
+                <p class="text-xl font-medium">让我们以DeepSeek-R1为起点，持续探索AIGC的无限可能。</p>
+                <p class="text-xl font-medium mt-4">在AI时代的技术浪潮中，我们既是见证者，更是参与者。</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <img src="https://www.pku.edu.cn/images/pku_logo.png" alt="北京大学校徽" class="h-10 mr-4">
+                        <div>
+                            <p class="font-bold">北京大学</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">DeepSeek与AIGC应用研讨</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <p class="font-bold mb-2">AI肖睿团队</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">孙萍、周峰、李娜、张惠军、刘誉</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="font-bold mb-2">联系与关注</p>
+                    <div class="flex justify-center md:justify-end space-x-4">
+                        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">© 2025 北京大学. 保留所有权利.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the saved theme
+        if (savedTheme === 'dark') {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
